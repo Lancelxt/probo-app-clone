@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, ScrollView, StyleSheet, Modal, TouchableOpacity, Text } from "react-native";
+import { View, ScrollView, StyleSheet, Modal, TouchableOpacity, Text, TouchableWithoutFeedback } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { calcHeight, calcWidth, getFontSizeByWindowWidth } from "../helper/res";
 import HomeHeader from "../Components/HomeHeader";
@@ -8,14 +8,14 @@ import HeroBanner from "../Components/HeroBanner";
 import TrendingSection from "../Components/TrendingSection";
 import QuestionCard from "../Components/QuestionCard";
 import SwipeableButton from "../Components/SwipeableButton";
-import bitcoin from '../assets/bitcoin.png'
-import Chess from '../assets/chess.png'
-import Dollar from '../assets/dollar.png'
-import Football from '../assets/football.png'
-import Stocks from '../assets/increase.png'
-import News from '../assets/newspaper.png'
-import Olympic from '../assets/olympic.png'
-import Basketball from '../assets/basketball.png'
+import bitcoin from '../assets/bitcoin.png';
+import Chess from '../assets/chess.png';
+import Dollar from '../assets/dollar.png';
+import Football from '../assets/football.png';
+import Stocks from '../assets/increase.png';
+import News from '../assets/newspaper.png';
+import Olympic from '../assets/olympic.png';
+import Basketball from '../assets/basketball.png';
 import COLOR from "../constants/Colors";
 
 function HomeScreen() {
@@ -88,50 +88,65 @@ function HomeScreen() {
         transparent={true}
         onRequestClose={closeModal}
       >
-        <View style={styles.modalBackground}>
-          <View style={styles.modalContent}>
-            <Text style={{ color: COLOR.PRIMARY_TEXT, fontSize: getFontSizeByWindowWidth(12), fontWeight: "500" }}>India to win the 3rd T20I vs Sri Lanka?</Text>
-            <View style={styles.selectorContainer}>
-              <TouchableOpacity
-                style={[styles.button, getButtonStyle("Yes")]}
-                onPress={() => setSelectedOption("Yes")}
-              >
-                <Text style={styles.buttonText}>Yes ₹ 7.3</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.button, getButtonStyle("No")]}
-                onPress={() => setSelectedOption("No")}
-              >
-                <Text style={styles.buttonText}>No ₹ 2.3</Text>
-              </TouchableOpacity>
-            </View>
-            {selectedOption && (
-              <SwipeableButton
-                // text={`${selectedOption} ₹ ${selectedOption === "Yes" ? "7.3" : "2.3"}`}
-                text={`${selectedOption}`}
-                onSwipeComplete={handleSwipeComplete}
-                style={{ backgroundColor: selectedOption === "Yes" ? "blue" : "red" }}
-              />
-            )}
-            <View style={styles.outcome}>
-              <Text style={{ color: "#009933", fontSize: getFontSizeByWindowWidth(12), fontWeight: "600" }}>High Probability of getting a match</Text>
-              <View style={styles.moneyContainer}>
-                <View style={styles.money}>
-                  <Text style={{ color: COLOR.DARK_TEXT, fontSize: getFontSizeByWindowWidth(18), fontWeight: "600" }}>₹7.2</Text>
-                  <Text style={{ color: COLOR.PRIMARY_TEXT, fontSize: getFontSizeByWindowWidth(12), fontWeight: "400" }}>You put</Text>
+        <TouchableWithoutFeedback onPress={closeModal}>
+          <View style={styles.modalBackground}>
+            <TouchableWithoutFeedback>
+              <View style={styles.modalContent}>
+                <Text style={{ color: COLOR.PRIMARY_TEXT, fontSize: getFontSizeByWindowWidth(12), fontWeight: "500" }}>
+                  India to win the 3rd T20I vs Sri Lanka?
+                </Text>
+                <View style={styles.selectorContainer}>
+                  <TouchableOpacity
+                    style={[styles.button, getButtonStyle("Yes")]}
+                    onPress={() => setSelectedOption("Yes")}
+                  >
+                    <Text style={styles.buttonText}>Yes ₹ 7.3</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[styles.button, getButtonStyle("No")]}
+                    onPress={() => setSelectedOption("No")}
+                  >
+                    <Text style={styles.buttonText}>No ₹ 2.3</Text>
+                  </TouchableOpacity>
                 </View>
-                <View style={styles.money}>
-                  <Text style={{ color: "#009933", fontSize: getFontSizeByWindowWidth(18), fontWeight: "600" }}>₹10</Text>
-                  <Text style={{ color: COLOR.PRIMARY_TEXT, fontSize: getFontSizeByWindowWidth(12), fontWeight: "400" }}>You put</Text>
+                {selectedOption && (
+                  <SwipeableButton
+                    text={`${selectedOption}`}
+                    onSwipeComplete={handleSwipeComplete}
+                    style={{ backgroundColor: selectedOption === "Yes" ? "blue" : "red" }}
+                  />
+                )}
+                <View style={styles.outcome}>
+                  <Text style={{ color: "#009933", fontSize: getFontSizeByWindowWidth(12), fontWeight: "600" }}>
+                    High Probability of getting a match
+                  </Text>
+                  <View style={styles.moneyContainer}>
+                    <View style={styles.money}>
+                      <Text style={{ color: COLOR.DARK_TEXT, fontSize: getFontSizeByWindowWidth(18), fontWeight: "600" }}>
+                        ₹7.2
+                      </Text>
+                      <Text style={{ color: COLOR.PRIMARY_TEXT, fontSize: getFontSizeByWindowWidth(12), fontWeight: "400" }}>
+                        You put
+                      </Text>
+                    </View>
+                    <View style={styles.money}>
+                      <Text style={{ color: "#009933", fontSize: getFontSizeByWindowWidth(18), fontWeight: "600" }}>
+                        ₹10
+                      </Text>
+                      <Text style={{ color: COLOR.PRIMARY_TEXT, fontSize: getFontSizeByWindowWidth(12), fontWeight: "400" }}>
+                        You put
+                      </Text>
+                    </View>
+                  </View>
                 </View>
+                <Text style={styles.bottomText}>Available Balance : ₹1580.00</Text>
+                <TouchableOpacity onPress={closeModal} style={styles.button}>
+                  <Text style={styles.buttonText}>Close</Text>
+                </TouchableOpacity>
               </View>
-            </View>
-            <Text style={styles.bottomText}>Available Balance : ₹1580.00</Text>
-            <TouchableOpacity onPress={closeModal} style={styles.button}>
-              <Text style={styles.buttonText}>Close</Text>
-            </TouchableOpacity>
+            </TouchableWithoutFeedback>
           </View>
-        </View>
+        </TouchableWithoutFeedback>
       </Modal>
     </SafeAreaView>
   );

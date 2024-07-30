@@ -1,24 +1,20 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
+import { useNavigation } from '@react-navigation/native';
 import COLOR from "../constants/Colors";
 import { calcHeight, calcWidth, getFontSizeByWindowWidth } from "../helper/res";
 import { MaterialIcons } from "@expo/vector-icons";
+import PAGES from '../constants/Pages';
 
 const QuestionCard = ({ openModal }) => {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate(PAGES.QUESTIONS)}>
       <View style={styles.header}>
-        <MaterialIcons
-          name="people-outline"
-          size={calcHeight(2.4)}
-          color="grey"
-        />
+        <MaterialIcons name="people-outline" size={calcHeight(2.4)} color="grey" />
         <Text style={styles.text}>28701 traders</Text>
-        <MaterialIcons
-          name="keyboard-arrow-right"
-          size={calcHeight(2)}
-          color="grey"
-        />
+        <MaterialIcons name="keyboard-arrow-right" size={calcHeight(2)} color="grey" />
       </View>
       <View style={styles.content}>
         <Text
@@ -31,11 +27,7 @@ const QuestionCard = ({ openModal }) => {
         </Text>
       </View>
       <View style={styles.description}>
-        <MaterialIcons
-          name="description"
-          size={calcHeight(2)}
-          color="black"
-        />
+        <MaterialIcons name="description" size={calcHeight(2)} color="black" />
         <Text
           style={[
             styles.text,
