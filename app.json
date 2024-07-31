@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "Probo-Clone",
+    "name": "Probo Clone",
     "slug": "Probo-Clone",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -23,6 +23,17 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7c01f762-272b-4886-b9b8-c084aeefbb18"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/7c01f762-272b-4886-b9b8-c084aeefbb18"
     }
   }
 }

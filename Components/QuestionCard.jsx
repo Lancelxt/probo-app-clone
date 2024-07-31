@@ -46,10 +46,10 @@ const QuestionCard = ({ openModal }) => {
         </Text>
       </View>
       <View style={styles.buttons}>
-        <TouchableOpacity style={styles.button} onPress={() => openModal("Yes ₹ 7.3 selected")}>
+        <TouchableOpacity style={styles.button} onPress={() => openModal("Yes")}>
           <Text style={styles.btnTxt}>Yes ₹ 7.3</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, { backgroundColor: "#ffe0cc" }]} onPress={() => openModal("No ₹ 2.3 selected")}>
+        <TouchableOpacity style={[styles.button, { backgroundColor: "#ffe0cc" }]} onPress={() => openModal("No")}>
           <Text style={[styles.btnTxt, { color: "#ff6600" }]}>No ₹ 2.3</Text>
         </TouchableOpacity>
       </View>

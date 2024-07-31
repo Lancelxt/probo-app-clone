@@ -3,16 +3,18 @@ import React from 'react'
 import { calcHeight, calcWidth, getFontSizeByWindowWidth } from '../../helper/res'
 import { MaterialIcons } from '@expo/vector-icons'
 import COLOR from '../../constants/Colors'
+import PAGES from '../../constants/Pages'
+import { useNavigation } from '@react-navigation/native'
 
 const TrendingCard = ({image,text}) => {
+  const navigation = useNavigation()
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate(PAGES.QUESTIONS)}>
 <Image source={image}/>
       <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
   )
 }
-
 const styles = StyleSheet.create({
     container:{
         backgroundColor:"#FFF",

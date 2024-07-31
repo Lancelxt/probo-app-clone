@@ -1,12 +1,14 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
-import { Ionicons } from "@expo/vector-icons";
 import { calcHeight, calcWidth, getFontSizeByWindowWidth } from "../helper/res";
 import COLOR from "../constants/Colors";
+import { useNavigation } from "@react-navigation/native";
+import PAGES from "../constants/Pages";
 
 const CategoryCard = ({image,text}) => {
+  const navigation = useNavigation()
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate(PAGES.QUESTIONS)}>
       <Image source={image} style={styles.image}/>
       <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
@@ -27,7 +29,8 @@ const styles = StyleSheet.create({
   },
   text:{
     color:COLOR.PRIMARY_TEXT,
-    fontSize:getFontSizeByWindowWidth(10)
+    fontSize:getFontSizeByWindowWidth(10),
+    fontWeight:"600"
   },
   image:{
     height:calcHeight(4),

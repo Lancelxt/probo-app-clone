@@ -10,30 +10,41 @@ import { Modal } from 'react-native';
 const Questions = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [swipedOption, setSwipedOption] = useState(null);
+  const [orderSuccess, setOrderSuccess] = useState(false);
 
   const openModal = (option) => {
     setSelectedOption(option);
     setModalVisible(true);
+    setOrderSuccess(false);
   };
 
   const closeModal = () => {
     setModalVisible(false);
     setSelectedOption(null);
+    setSwipedOption(null);
+    setOrderSuccess(false);
   };
 
   const handleSwipeComplete = () => {
-    console.log(`Swiped ${selectedOption}`);
-    closeModal();
+    setSwipedOption(selectedOption);
+    setOrderSuccess(true);
+    setTimeout(() => {
+      closeModal();
+    }, 300);
   };
 
   const getButtonStyle = (option) => {
     return {
-      backgroundColor: selectedOption === option ? (option === "Yes" ? "blue" : "red") : COLOR.BACKGROUND,
+      backgroundColor: selectedOption === option ? (option === "Yes" ? "#3366ff" : "#ff471a") : COLOR.BACKGROUND,
     };
   };
 
-  const handleOptionPress = (option) => {
-    setSelectedOption(option);
+  const getSwipeButtonText = () => {
+    if (orderSuccess) {
+      return "Order Successful";
+    }
+    return selectedOption === "Yes" ? "Swipe for Yes" : "Swipe for No";
   };
 
   return (
@@ -112,30 +123,27 @@ const Questions = () => {
           <View style={styles.modalBackground}>
             <TouchableWithoutFeedback>
               <View style={styles.modalContent}>
-                <Text style={{ color: COLOR.PRIMARY_TEXT, fontSize: getFontSizeByWindowWidth(12), fontWeight: "500" }}>
+                <Text style={{ color: COLOR.PRIMARY_TEXT, fontSize: getFontSizeByWindowWidth(12), fontWeight: "500" ,paddingHorizontal: calcHeight(2)}}>
                   India to win the 3rd T20I vs Sri Lanka?
                 </Text>
                 <View style={styles.selectorContainer}>
                   <TouchableOpacity
-                    style={[styles.button, getButtonStyle("Yes")]}
+                    style={[styles.button, { backgroundColor: selectedOption === "Yes" ? "#3366ff" : COLOR.BACKGROUND }]}
                     onPress={() => setSelectedOption("Yes")}
                   >
-                    <Text style={styles.buttonText}>Yes ₹ 7.3</Text>
+                    <Text style={[styles.buttonText, { color: selectedOption === "Yes" ? COLOR.BACKGROUND : COLOR.DARK_TEXT }]}>
+                      Yes ₹ 7.3
+                    </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    style={[styles.button, getButtonStyle("No")]}
+                    style={[styles.button, { backgroundColor: selectedOption === "No" ? "#ff471a" : COLOR.BACKGROUND }]}
                     onPress={() => setSelectedOption("No")}
                   >
-                    <Text style={styles.buttonText}>No ₹ 2.3</Text>
+                    <Text style={[styles.buttonText, { color: selectedOption === "No" ? COLOR.BACKGROUND : COLOR.DARK_TEXT }]}>
+                      No ₹ 2.3
+                    </Text>
                   </TouchableOpacity>
                 </View>
-                {selectedOption && (
-                  <SwipeableButton
-                    text={`${selectedOption}`}
-                    onSwipeComplete={handleSwipeComplete}
-                    style={{ backgroundColor: selectedOption === "Yes" ? "blue" : "red" }}
-                  />
-                )}
                 <View style={styles.outcome}>
                   <Text style={{ color: "#009933", fontSize: getFontSizeByWindowWidth(12), fontWeight: "600" }}>
                     High Probability of getting a match
@@ -159,10 +167,22 @@ const Questions = () => {
                     </View>
                   </View>
                 </View>
+                <View style={{backgroundColor:COLOR.BACKGROUND,elevation:calcHeight(0.28),paddingHorizontal:calcHeight(1)}}>
+                {selectedOption && (
+                  <SwipeableButton
+                    text={getSwipeButtonText()}
+                    onSwipeComplete={handleSwipeComplete}
+                    style={{ backgroundColor: orderSuccess ? "#00cc44" : (selectedOption === "Yes" ? "#3366ff" : "#ff471a") }}
+                  />
+                )}
+                </View>
+                <View style={{marginTop:calcHeight(2)}}>
                 <Text style={styles.bottomText}>Available Balance : ₹1580.00</Text>
-                <TouchableOpacity onPress={closeModal} style={styles.button}>
+                </View>
+                {/* <TouchableOpacity onPress={closeModal} style={styles.button}>
                   <Text style={styles.buttonText}>Close</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
+                
               </View>
             </TouchableWithoutFeedback>
           </View>
@@ -264,18 +284,23 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: '#f2f2f2',
-    padding: calcHeight(2),
+    paddingVertical: calcHeight(2), // Add this is other's too
     borderTopLeftRadius: calcHeight(2),
     borderTopRightRadius: calcHeight(2),
-    maxHeight: '40%',
   },
   button: {
     alignSelf: 'center',
     borderRadius: calcHeight(8),
     paddingVertical: calcHeight(1),
-    paddingHorizontal: calcWidth(16),
+    paddingHorizontal: calcWidth(15),
   },
   buttonText: {
+    color: COLOR.BACKGROUND,
+    fontSize: getFontSizeByWindowWidth(12),
+    fontWeight: "600",
+    
+  },
+  buttonText2: {
     color: COLOR.DARK_TEXT,
     fontSize: getFontSizeByWindowWidth(12),
     fontWeight: "600",
@@ -288,6 +313,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     marginBottom: calcHeight(3),
     marginTop: calcHeight(1),
+   marginHorizontal: calcHeight(2), // Add this is other's too
   },
   bottomText: {
     color: COLOR.PRIMARY_TEXT,
@@ -301,6 +327,7 @@ const styles = StyleSheet.create({
     borderRadius: calcHeight(1),
     elevation: calcHeight(0.1),
     marginBottom: calcHeight(2),
+    marginHorizontal: calcHeight(2), // Add this is other's too
   },
   moneyContainer: {
     flexDirection: "row",

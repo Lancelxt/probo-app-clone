@@ -4,13 +4,9 @@ import TrendingCard from './trendingCard';
 import { calcHeight, calcWidth, getFontSizeByWindowWidth } from '../../helper/res';
 import COLOR from '../../constants/Colors';
 import bitcoin from '../../assets/bitcoin.png'
-import Chess from '../../assets/chess.png'
-import Dollar from '../../assets/dollar.png'
-import Football from '../../assets/football.png'
 import Stocks from '../../assets/increase.png'
 import News from '../../assets/newspaper.png'
 import Olympic from '../../assets/olympic.png'
-import Basketball from '../../assets/basketball.png'
 
 const TrendingSection = () => {
   return (
