@@ -4,6 +4,7 @@ const COLOR = {
     BACKGROUND:"#FFF",
     PRIMARY_TEXT:"grey",
     LINK:"#4d79ff",
+    MODAL_BACKGROUND:"#e6e6e6"
 };
 
 export default COLOR;

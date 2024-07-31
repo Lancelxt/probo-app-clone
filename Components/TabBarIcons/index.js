@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { StyleSheet, View, TouchableOpacity, Animated } from 'react-native';
 import Icon from './icon'; // Adjust the import path as needed
-import { calcHeight } from '../../helper/res';
+import { calcHeight, calcWidth } from '../../helper/res';
 
 function CustomTabBar({ state, descriptors, navigation }) {
     // Create an array of Animated.Values, one for each tab
@@ -78,7 +78,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderTopWidth: calcHeight(0.1),
         borderTopColor: '#ddd',
-        // height: 60,
         height: calcHeight(8),
         overflow: 'hidden',
     },
@@ -86,6 +85,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        
     },
     animatedContainer: {
         borderRadius: 100,
