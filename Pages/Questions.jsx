@@ -27,6 +27,8 @@ import Stocks from '../assets/increase.png';
 import News from '../assets/newspaper.png';
 import Olympic from '../assets/olympic.png';
 import Basketball from '../assets/basketball.png';
+import IC from "../assets/soccer.png"
+
 
 const Questions = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -162,6 +164,8 @@ const Questions = () => {
           <View style={styles.modalBackground}>
             <TouchableWithoutFeedback>
               <View style={styles.modalContent}>
+<Image source={IC} style={styles.ic} />
+
                 <Text
                   style={{
                     color: COLOR.PRIMARY_TEXT,
@@ -441,7 +445,7 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: "#f2f2f2",
-    paddingVertical: calcHeight(2), // Add this is other's too
+    paddingVertical: calcHeight(3), // Add this is other's too
     borderTopLeftRadius: calcHeight(2),
     borderTopRightRadius: calcHeight(2),
   },
@@ -514,6 +518,13 @@ const styles = StyleSheet.create({
     gap:calcHeight(2),
 
   },
+  ic:{
+    position:"absolute",
+    top:calcHeight(1.6),
+    right:calcWidth(8),
+    width:calcWidth(8),
+    height:calcHeight(4)
+  }
 });
 
 export default Questions;

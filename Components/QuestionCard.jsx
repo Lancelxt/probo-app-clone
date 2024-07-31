@@ -1,10 +1,11 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { useNavigation } from '@react-navigation/native';
 import COLOR from "../constants/Colors";
 import { calcHeight, calcWidth, getFontSizeByWindowWidth } from "../helper/res";
 import { MaterialIcons } from "@expo/vector-icons";
 import PAGES from '../constants/Pages';
+import IC from "../assets/soccer.png"
 
 const QuestionCard = ({ openModal }) => {
   const navigation = useNavigation();
@@ -53,6 +54,7 @@ const QuestionCard = ({ openModal }) => {
           <Text style={[styles.btnTxt, { color: "#ff6600" }]}>No ₹ 2.3</Text>
         </TouchableOpacity>
       </View>
+<Image source={IC} style={styles.ic} />
     </TouchableOpacity>
   );
 };
@@ -100,6 +102,13 @@ const styles = StyleSheet.create({
     fontSize: getFontSizeByWindowWidth(12),
     fontWeight: "800",
   },
+  ic:{
+    position:"absolute",
+    top:calcHeight(3.2),
+    right:calcWidth(3.2),
+    width:calcWidth(8),
+    height:calcHeight(4)
+  }
 });
 
 export default QuestionCard;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, ScrollView, StyleSheet, Modal, TouchableOpacity, Text, TouchableWithoutFeedback } from "react-native";
+import { View, ScrollView, StyleSheet, Modal, TouchableOpacity, Text, TouchableWithoutFeedback, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { calcHeight, calcWidth, getFontSizeByWindowWidth } from "../helper/res";
 import HomeHeader from "../Components/HomeHeader";
@@ -17,6 +17,8 @@ import News from '../assets/newspaper.png';
 import Olympic from '../assets/olympic.png';
 import Basketball from '../assets/basketball.png';
 import COLOR from "../constants/Colors";
+import IC from "../assets/soccer.png"
+
 
 function HomeScreen() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -107,6 +109,8 @@ function HomeScreen() {
           <View style={styles.modalBackground}>
             <TouchableWithoutFeedback>
               <View style={styles.modalContent}>
+<Image source={IC} style={styles.ic} />
+
                 <Text style={{ color: COLOR.PRIMARY_TEXT, fontSize: getFontSizeByWindowWidth(12), fontWeight: "500" ,paddingHorizontal: calcHeight(2)}}>
                   India to win the 3rd T20I vs Sri Lanka?
                 </Text>
@@ -209,7 +213,7 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: '#f2f2f2',
-    padding: calcHeight(2),
+    paddingVertical: calcHeight(3), 
     borderTopLeftRadius: calcHeight(2),
     borderTopRightRadius: calcHeight(2),
   },
@@ -345,7 +349,7 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: '#f2f2f2',
-    paddingVertical: calcHeight(2), // Add this is other's too
+    paddingVertical: calcHeight(3), // Add this is other's too
     borderTopLeftRadius: calcHeight(2),
     borderTopRightRadius: calcHeight(2),
   },
@@ -398,6 +402,13 @@ const styles = StyleSheet.create({
   money: {
     alignItems: "center",
   },
+  ic:{
+    position:"absolute",
+    top:calcHeight(1.6),
+    right:calcWidth(8),
+    width:calcWidth(8),
+    height:calcHeight(4)
+  }
 });
 
 export default HomeScreen;
